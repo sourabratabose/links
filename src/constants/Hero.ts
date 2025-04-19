@@ -1,6 +1,7 @@
 import HeroData from "../types/HeroData";
 
 const HeroSection: HeroData = {
+  pfp: "/pfp.jpg",
   intro:
     "A passionate web designer and fullstack web and hybrid mobile application developer based inKolkata, WB, India using ",
   technologies: ["Javascript/Typescript", "Solidity", "Rust"],

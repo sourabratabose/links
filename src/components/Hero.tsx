@@ -30,7 +30,7 @@ export default function Hero() {
           width={"100%"}
           m={"1"}
         >
-          <Avatar size={"9"} fallback={"Sourabrata Bose"} src={""} />
+          <Avatar size={"9"} fallback={"Sourabrata Bose"} src={HeroSection.pfp} />
           <Flex direction={"column"} as={"div"} gap={"4"} justify={"between"}>
             <Heading
               size={"6"}
