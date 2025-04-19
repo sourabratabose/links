@@ -9,11 +9,6 @@ jobs:
   format-and-lint:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
-
     steps:
       # Checkout repository
       - name: Checkout the repository
@@ -25,26 +20,18 @@ jobs:
         uses: super-linter/super-linter@v7.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
-  build:
-    runs-on: ubuntu-latest
-    
-    steps:
+      # Install and setup Bun
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-      
+      # Install project dependencies  
       - name: Install dependencies
         run: bun install
-
+      # Build and bundle project
       - name: Build Projects
         run: bun run build
-
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
+      # Deploy project
       - name: Deploy to GH packages
         uses: peaceiris/actions-gh-pages@v4
         with:

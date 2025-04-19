@@ -1,4 +1,4 @@
-type LinkSection = {
+type LinkData = {
   sectionHeading: string,
   links: {
     icon: string,
@@ -7,4 +7,4 @@ type LinkSection = {
   }[]
 }
 
-export default LinkSection;
+export default LinkData;

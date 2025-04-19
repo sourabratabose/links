@@ -15,6 +15,7 @@ import {
   Text,
 } from "@radix-ui/themes";
 import { useState } from "react";
+import HeroSection from "../constants/Hero";
 
 export default function Hero() {
   const [expanded, setExpand] = useState<boolean>(false);
@@ -29,11 +30,7 @@ export default function Hero() {
           width={"100%"}
           m={"1"}
         >
-          <Avatar
-            size={"9"}
-            fallback={"Sourabrata Bose"}
-            src={""}
-          />
+          <Avatar size={"9"} fallback={"Sourabrata Bose"} src={""} />
           <Flex direction={"column"} as={"div"} gap={"4"} justify={"between"}>
             <Heading
               size={"6"}
@@ -50,26 +47,34 @@ export default function Hero() {
                 "text-ellipsis" + " " + (expanded ? "" : "line-clamp-2")
               }
             >
-              Hi there, I am Sourabrata Bose. A passionate web designer and
-              fullstack web developer using <Em>Javascript/Typescript</Em> and{" "}
-              <Em>Solidity</Em>.
+              {HeroSection.intro}{" "}
+              {HeroSection.technologies.map((val, idx) =>
+                idx != HeroSection.technologies.length - 1 ? (
+                  <>
+                    <Em>{val}</Em>
+                    {", "}
+                  </>
+                ) : (
+                  <>
+                    {"and "}
+                    <Em>{val}</Em>
+                  </>
+                )
+              )}
             </Text>
             <Box className={expanded ? "h-full" : "overflow-hidden h-0"}>
               <Text align={{ initial: "center", xs: "left" }}>
-                I primarily code and develop projects in Javascript and/or
-                Typescript as needed.
-                <br />
-                <br />
-                I use Solidity and Hardhat suit to develop smart contracts on
-                the Ethereum blockchain but also learning Rust and Anchor to
-                develop solana smart contracts.
-                <br />
-                <br />
-                For frontend of my projects I use React for both web and desktop
-                application development. For mobile I use React Native with Expo
-                and EAS. For backend I primarily use BunJS for a newer
-                alternative toNodeJS, Drizzle ORM with PostgreSQL or SQLite for
-                RDBMS andMongoose with MongoDB for NoSQL database.
+                {HeroSection.expandedParas.map((val, idx) =>
+                  idx != HeroSection.expandedParas.length - 1 ? (
+                    <>
+                      {val}
+                      <br />
+                      <br />
+                    </>
+                  ) : (
+                    val
+                  )
+                )}
               </Text>
             </Box>
             <Flex
@@ -102,7 +107,7 @@ export default function Hero() {
             Status :&nbsp;
           </Text>
           <Text align={"left"} as={"span"} size={"2"}>
-            I am Engineering my limits.
+            {HeroSection.status}
           </Text>
         </Callout.Text>
       </Callout.Root>

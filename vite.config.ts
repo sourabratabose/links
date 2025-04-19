@@ -3,11 +3,10 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  root: "./",
-  base: "/pages/links",
   server: {
     port: 5174
   },
+  publicDir: "./public",
   build: {
     emptyOutDir: true,
     outDir: "./dist",
