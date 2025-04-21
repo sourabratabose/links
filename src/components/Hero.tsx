@@ -14,7 +14,7 @@ import {
   Heading,
   Text,
 } from "@radix-ui/themes";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import HeroSection from "../constants/Hero";
 
 export default function Hero() {
@@ -30,7 +30,11 @@ export default function Hero() {
           width={"100%"}
           m={"1"}
         >
-          <Avatar size={"9"} fallback={"Sourabrata Bose"} src={HeroSection.pfp} />
+          <Avatar
+            size={"9"}
+            fallback={"Sourabrata Bose"}
+            src={HeroSection.pfp}
+          />
           <Flex direction={"column"} as={"div"} gap={"4"} justify={"between"}>
             <Heading
               size={"6"}
@@ -50,15 +54,15 @@ export default function Hero() {
               {HeroSection.intro}{" "}
               {HeroSection.technologies.map((val, idx) =>
                 idx != HeroSection.technologies.length - 1 ? (
-                  <>
+                  <Fragment key={idx}>
                     <Em>{val}</Em>
                     {", "}
-                  </>
+                  </Fragment>
                 ) : (
-                  <>
+                  <Fragment key={idx}>
                     {"and "}
                     <Em>{val}</Em>
-                  </>
+                  </Fragment>
                 )
               )}
             </Text>
@@ -66,11 +70,11 @@ export default function Hero() {
               <Text align={{ initial: "center", xs: "left" }}>
                 {HeroSection.expandedParas.map((val, idx) =>
                   idx != HeroSection.expandedParas.length - 1 ? (
-                    <>
+                    <Fragment key={idx}>
                       {val}
                       <br />
                       <br />
-                    </>
+                    </Fragment>
                   ) : (
                     val
                   )

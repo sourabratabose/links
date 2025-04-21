@@ -1,22 +1,22 @@
 import { z } from "zod";
+import client from "./SupabaseClient";
 
 export const messageSchema = z.object({
-  name: z.string().min(5).max(100),
-  email: z.string().email().min(5).max(100),
-  companyName: z.string().min(5).max(100).optional(),
-  message: z.string().min(5).max(300),
+  name: z.string().min(3).max(255),
+  email: z.string().email().min(5).max(255),
+  company: z.string().min(5).max(500).optional(),
+  message: z.string().min(3).max(5000),
 });
 
 export default async function messageSend(
   msgObj: any
 ): Promise<boolean> {
-  const { data, error } = messageSchema.safeParse(msgObj);
-  if (error != undefined || data == undefined)
-    throw new Error("Bad message object! Request not sent");
-  const response = await fetch("", {
-    body: JSON.stringify(data),
-    method: "POST"
+  const { data, error } = await client.functions.invoke("message", {
+    body: msgObj,
+    method: "POST",
   });
-  if (response.ok) return JSON.parse(await response.text()).body;
-  else throw new Error("API unavailable right now!");
+  if (error == null) {
+    if (data != null) return data;
+    else return false;
+  } else throw new Error("API unavailable right now");
 }

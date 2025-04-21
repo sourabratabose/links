@@ -14,14 +14,13 @@ import {
   Badge,
 } from "@radix-ui/themes";
 import { FormEvent, FormEventHandler, useState } from "react";
-import messageSend from "../../functions/MessageSend";
+import messageSend, { messageSchema } from "../../functions/MessageSend";
 
 export default function Message() {
   const [sendingMessage, setSendingMessage] = useState<boolean>(false);
   const [sendStatus, setSendStatus] = useState<"none" | "success" | "fail">(
     "none"
   );
-  
 
   const submitHandler: FormEventHandler<HTMLFormElement> = async (
     e: FormEvent<HTMLFormElement>
@@ -30,13 +29,13 @@ export default function Message() {
     setSendingMessage(true);
     try {
       const formObject = Object.fromEntries(new FormData(e.currentTarget));
-
-      const response = await messageSend(formObject);
+      const data = messageSchema.parse(formObject);
+      const response: boolean = await messageSend(data);
       if (response) setSendStatus("success");
       else setSendStatus("fail");
-      setTimeout(() => setSendStatus("none"), 3000);
+      setTimeout(() => setSendStatus("none"), 5000);
     } catch (e) {
-      console.error("Failed parsing the email : ", e);
+      console.error("Failed parsing the email: ", e);
     } finally {
       setSendingMessage(false);
     }
@@ -103,7 +102,11 @@ export default function Message() {
         align={"center"}
         width={"100%"}
       >
-        <Link href="mailto:bose.sourabrata21century@gmail.com" underline={"hover"} asChild={true}>
+        <Link
+          href="mailto:bose.sourabrata21century@gmail.com"
+          underline={"hover"}
+          asChild={true}
+        >
           <Button type="button" variant={"surface"} size={"2"}>
             Email Me
             <ArrowTopRightIcon />
@@ -116,15 +119,15 @@ export default function Message() {
             disabled={sendingMessage}
             size={"2"}
           >
-            Subscribe <PaperPlaneIcon />
+            Send <PaperPlaneIcon />
           </Button>
         ) : sendStatus == "success" ? (
           <Badge color={"grass"} size={"3"}>
-            Sign up successful
+            Message Sent
           </Badge>
         ) : (
           <Badge color={"ruby"} size={"3"}>
-            Failed to signup
+            Message Failed
           </Badge>
         )}
       </Flex>

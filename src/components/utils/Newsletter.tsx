@@ -1,7 +1,8 @@
 import { EnvelopeClosedIcon, PaperPlaneIcon } from "@radix-ui/react-icons";
 import { Badge, Button, Flex, TextField } from "@radix-ui/themes";
 import { FormEvent, FormEventHandler, useState } from "react";
-import newsletterSignUp from "../../functions/NewsletterSignUp";
+import { emailSchema } from "../../functions/NewsletterSignUp";
+import newsletter from "../../functions/NewsletterSignUp";
 
 export default function Newsletter() {
   const [signingUp, setSigningUp] = useState<boolean>(false);
@@ -15,14 +16,14 @@ export default function Newsletter() {
     e.preventDefault();
     setSigningUp(true);
     try {
-      const formObject = new FormData(e.currentTarget);
-
-      const response: boolean = await newsletterSignUp("subscribe", formObject);
+      const form = new FormData(e.currentTarget);
+      const email = emailSchema.parse(form.get("email"));
+      const response = await newsletter("subscribe", email);
       if (response) setSignUpStatus("success");
-      else setSignUpStatus("fail")
-      setTimeout(() => setSignUpStatus("none"), 5000)
-    } catch (e) { 
-      console.log("Error parsing the email : ", e)
+      else setSignUpStatus("fail");
+      setTimeout(() => setSignUpStatus("none"), 5000);
+    } catch (e) {
+      console.log("Error parsing the email: ", e);
     } finally {
       setSigningUp(false);
     }
@@ -38,7 +39,11 @@ export default function Newsletter() {
       mt={"3"}
     >
       <form onSubmit={submitHandler}>
-        <TextField.Root placeholder="Your E - Mail ID" className="w-full" name="email">
+        <TextField.Root
+          placeholder="Your E - Mail ID"
+          className="w-full"
+          name="email"
+        >
           <TextField.Slot>
             <EnvelopeClosedIcon />
           </TextField.Slot>
@@ -48,9 +53,13 @@ export default function Newsletter() {
             Subscribe <PaperPlaneIcon />
           </Button>
         ) : signUpStatus == "success" ? (
-          <Badge color={"grass"} size={"3"}>Sign up successful</Badge>
+          <Badge color={"grass"} size={"3"}>
+            Sign up successful
+          </Badge>
         ) : (
-          <Badge color={"ruby"} size={"3"}>Failed to signup</Badge>
+          <Badge color={"ruby"} size={"3"}>
+            Failed to signup
+          </Badge>
         )}
       </form>
     </Flex>
