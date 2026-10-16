@@ -15,6 +15,7 @@ import {
 } from "@radix-ui/themes";
 import { type SubmitEvent, type SubmitEventHandler, useState } from "react";
 import messageSend, { messageSchema } from "../../functions/MessageSend";
+import HeroSection from "../../constants/hero";
 
 export default function Message() {
 	const [sendingMessage, setSendingMessage] = useState<boolean>(false);
@@ -105,7 +106,7 @@ export default function Message() {
 				width={"100%"}
 			>
 				<Link
-					href="mailto:bose.sourabrata21century@gmail.com"
+					href={`mailto:${HeroSection.email}`}
 					underline={"hover"}
 					asChild={true}
 				>

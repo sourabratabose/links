@@ -7,22 +7,22 @@ const LinkSections: LinksData[] = [
 			{
 				icon: "",
 				text: "Facebook",
-				url: "",
+				url: "https://www.facebook.com/sourabratabose1",
 			},
 			{
 				icon: "",
 				text: "Reddit",
-				url: "",
+				url: "https://www.reddit.com/user/MisterNoobKiller/",
 			},
 			{
 				icon: "",
 				text: "Instagram",
-				url: "",
+				url: "https://www.instagram.com/sourabratabose1",
 			},
 			{
 				icon: "",
 				text: "Twitter / X",
-				url: "",
+				url: "https://x.com/sourabrata_bose",
 			},
 		],
 	},
@@ -32,22 +32,22 @@ const LinkSections: LinksData[] = [
 			{
 				icon: "",
 				text: "Naukri",
-				url: "",
+				url: "https://www.naukri.com/mnjuser/profile?id=&altresid",
 			},
 			{
 				icon: "",
 				text: "LinkedIn",
-				url: "",
+				url: "https://www.linkedin.com/in/sourabratabose/",
 			},
 			{
 				icon: "",
 				text: "Freelancer",
-				url: "",
+				url: "https://www.freelancer.com/u/sourabratabose",
 			},
 			{
 				icon: "",
 				text: "Unstop",
-				url: "",
+				url: "https://unstop.com/u/sourabos9036",
 			},
 		],
 	},
@@ -57,7 +57,7 @@ const LinkSections: LinksData[] = [
 			{
 				icon: "",
 				text: "Discord",
-				url: "",
+				url: "https://discord.com/users/749696863061540875",
 			},
 			{
 				icon: "",
@@ -67,12 +67,12 @@ const LinkSections: LinksData[] = [
 			{
 				icon: "",
 				text: "Whatsapp",
-				url: "",
+				url: "+91 9875666031",
 			},
 			{
 				icon: "",
 				text: "GMail",
-				url: "",
+				url: "mailto:bose.sourabrata21century@gmail.com",
 			},
 		],
 	},
