@@ -12,14 +12,11 @@ jobs:
     steps:
       # Checkout repository
       - name: Checkout the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      # Format Code
-      - name: Format and Lint the code in the repository
-        uses: super-linter/super-linter@v7.3.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ref: master
+          persist-credentials: true
       # Install and setup Bun
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -28,6 +25,9 @@ jobs:
       # Install project dependencies  
       - name: Install dependencies
         run: bun install
+      # Format Code
+      - name: Format and Lint the code in the repository
+        run: bun run check
       # Build and bundle project
       - name: Build Projects
         run: bun run build
