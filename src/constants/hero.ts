@@ -11,7 +11,7 @@ const HeroSection: HeroData = {
 		"I use LangChain and LangGraph to develop smart AI powered applications. Prefferably use AI harness, OpenAI and Gemini as LLM provider.",
 		"For frontend of my projects I use NextJS for web development and Expo for Mobile development. For backend I primarily use NestJS/FastAPI, Drizzle ORM with PostgreSQL, Mongoose ORM with MongoDB and QDrant.",
 	],
-	email: "me@sourabratabose.dev"
+	email: "me@sourabratabose.dev",
 };
 
 export default HeroSection;

@@ -14,8 +14,8 @@ import {
 	TextField,
 } from "@radix-ui/themes";
 import { type SubmitEvent, type SubmitEventHandler, useState } from "react";
-import messageSend, { messageSchema } from "../../functions/MessageSend";
 import HeroSection from "../../constants/hero";
+import messageSend, { messageSchema } from "../../functions/MessageSend";
 
 export default function Message() {
 	const [sendingMessage, setSendingMessage] = useState<boolean>(false);
